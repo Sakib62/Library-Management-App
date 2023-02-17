@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="scroll" type="id" />
+    <item name="head" type="id" />
+    <item name="userType" type="id" />
+    <item name="name" type="id" />
+    <item name="registrationNo" type="id" />
+    <item name="email" type="id" />
+    <item name="password" type="id" />
+    <item name="confirmPassword" type="id" />
+    <item name="register" type="id" />
+</resources>
