@@ -22,11 +22,26 @@ public class MainActivity extends AppCompatActivity {
                 openSignUpActivity();
             }
         });
+
+        //Will go to sign in page
+        Button SignIn = (Button) findViewById(R.id.SignIn);
+        SignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignInActivity();
+            }
+        });
     }
 
     public void openSignUpActivity()
     {
         Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSignInActivity()
+    {
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
 }
