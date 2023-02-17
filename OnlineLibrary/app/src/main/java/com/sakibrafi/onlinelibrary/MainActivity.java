@@ -13,5 +13,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //will go to sign up page
+        Button SignUp = (Button) findViewById(R.id.SignUp);
+        SignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSignUpActivity();
+            }
+        });
+    }
+
+    public void openSignUpActivity()
+    {
+        Intent intent = new Intent(this, SignUpActivity.class);
+        startActivity(intent);
     }
 }
