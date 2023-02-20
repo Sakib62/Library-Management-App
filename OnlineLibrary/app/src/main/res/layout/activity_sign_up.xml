@@ -22,9 +22,6 @@
             android:orientation="vertical">
 
 
-        </LinearLayout>
-    </ScrollView>
-
     <TextView
         android:id="@+id/head"
         android:layout_width="wrap_content"
@@ -137,5 +134,9 @@
         android:text="Register"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

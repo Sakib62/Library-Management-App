@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#04E3FF"
+    tools:context=".AdminHomeActivity">
+
+
+    <TextView
+        android:id="@+id/adminHome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="#F9FBFB"
+        android:gravity="center"
+        android:text="Admin Home"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adminHome"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|center_horizontal"
+        android:text="SEARCH"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/addBook"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Add Book"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/removeBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addBook"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="REMOVE BOOK"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/issueBook"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/removeBook"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="ISSUE BOOKR"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/returnBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/issueBook"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="RETURN BOOK"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/collectFine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/returnBook"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="COLLECT FINE"
+        android:textSize="24sp"/>
+
+    <Button
+        android:id="@+id/logOut"
+        android:layout_width="212dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/collectFine"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="LOG OUT"
+        android:textSize="24sp" />
+
+</RelativeLayout>
