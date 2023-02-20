@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "898493047700",
+    "project_id": "online-library-2662",
+    "storage_bucket": "online-library-2662.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898493047700:android:2b2c6b8f20826906f9e581",
+        "android_client_info": {
+          "package_name": "com.sakibrafi.onlinelibrary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898493047700-t2sc8po0cmi5i0te6eqiriei6jd9celg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3fI5kldCfqA55WaB_iaH-1ezknR_5ep4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898493047700-t2sc8po0cmi5i0te6eqiriei6jd9celg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
