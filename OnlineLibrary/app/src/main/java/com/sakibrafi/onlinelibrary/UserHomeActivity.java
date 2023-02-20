@@ -19,14 +19,29 @@ public class UserHomeActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainInActivity();
+                openMainActivity();
+            }
+        });
+
+        Button search = (Button) findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearchBookActivity();
             }
         });
     }
 
-    public void openMainInActivity()
+    public void openMainActivity()
     {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void openSearchBookActivity()
+    {
+        Intent intent = new Intent(this, SearchBookActivity.class);
+        startActivity(intent);
+    }
+
 }
