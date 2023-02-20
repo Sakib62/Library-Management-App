@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00BCD4"
+    tools:context=".RemoveBookActivity" >
+
+    <TextView
+        android:id="@+id/RemoveBook"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="REMOVE BOOK"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:background="@color/white"/>
+
+    <EditText
+        android:id="@+id/bookID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/RemoveBook"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:hint="Book ID"
+        android:padding="15dp"
+        android:textSize="28sp"/>
+
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bookID"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="135dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="REMOVE"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+</RelativeLayout>
