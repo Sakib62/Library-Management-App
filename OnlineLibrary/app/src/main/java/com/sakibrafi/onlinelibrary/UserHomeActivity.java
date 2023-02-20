@@ -25,10 +25,24 @@ public class UserHomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button search = findViewById(R.id.search);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSearchBookActivity();
+            }
+        });
     }
 
     public void openMainInActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void openSearchBookActivity() {
+        Intent intent = new Intent(this, SearchBookActivity.class);
+        startActivity(intent);
+    }
+
 }
