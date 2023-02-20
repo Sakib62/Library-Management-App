@@ -21,11 +21,26 @@ public class AdminHomeActivity extends AppCompatActivity {
                 openSearchBookActivity();
             }
         });
+
+
+        Button addBook = (Button) findViewById(R.id.addBook);
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAddBookActivity();
+            }
+        });
     }
 
     public void openSearchBookActivity()
     {
         Intent intent = new Intent(this, SearchBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openAddBookActivity()
+    {
+        Intent intent = new Intent(this, AddBookActivity.class);
         startActivity(intent);
     }
 }
