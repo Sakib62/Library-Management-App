@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class UserHomeActivity extends AppCompatActivity {
 
     @Override
@@ -14,16 +16,17 @@ public class UserHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
-        //will go to main activity
-        Button logOut = (Button) findViewById(R.id.logOut);
+        Button logOut = findViewById(R.id.logOut);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainActivity();
+                FirebaseAuth.getInstance().signOut();
+                openMainInActivity();
+                finish();
             }
         });
 
-        Button search = (Button) findViewById(R.id.search);
+        Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,14 +35,12 @@ public class UserHomeActivity extends AppCompatActivity {
         });
     }
 
-    public void openMainActivity()
-    {
+    public void openMainInActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    public void openSearchBookActivity()
-    {
+    public void openSearchBookActivity() {
         Intent intent = new Intent(this, SearchBookActivity.class);
         startActivity(intent);
     }
