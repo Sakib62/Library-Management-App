@@ -30,6 +30,46 @@ public class AdminHomeActivity extends AppCompatActivity {
                 openAddBookActivity();
             }
         });
+
+        Button removeBook = (Button) findViewById(R.id.removeBook);
+        removeBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRemoveBookActivity();
+            }
+        });
+
+        Button issueBook = (Button) findViewById(R.id.issueBook);
+        issueBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openIssueBookActivity();
+            }
+        });
+
+        Button returnBook = (Button) findViewById(R.id.returnBook);
+        returnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openReturnBookActivity();
+            }
+        });
+
+        Button collectFine = (Button) findViewById(R.id.collectFine);
+        collectFine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCollectFineActivity();
+            }
+        });
+
+        Button logOut = (Button) findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMainActivity();
+            }
+        });
     }
 
     public void openSearchBookActivity()
@@ -41,6 +81,36 @@ public class AdminHomeActivity extends AppCompatActivity {
     public void openAddBookActivity()
     {
         Intent intent = new Intent(this, AddBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openRemoveBookActivity()
+    {
+        Intent intent = new Intent(this, RemoveBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openIssueBookActivity()
+    {
+        Intent intent = new Intent(this, IssueBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openReturnBookActivity()
+    {
+        Intent intent = new Intent(this, ReturnBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openCollectFineActivity()
+    {
+        Intent intent = new Intent(this, CollectFineActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMainActivity()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
