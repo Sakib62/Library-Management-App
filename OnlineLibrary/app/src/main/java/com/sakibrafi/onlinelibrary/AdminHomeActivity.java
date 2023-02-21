@@ -46,6 +46,30 @@ public class AdminHomeActivity extends AppCompatActivity {
                 openIssueBookActivity();
             }
         });
+
+        Button returnBook = (Button) findViewById(R.id.returnBook);
+        returnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openReturnBookActivity();
+            }
+        });
+
+        Button collectFine = (Button) findViewById(R.id.collectFine);
+        collectFine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCollectFineActivity();
+            }
+        });
+
+        Button logOut = (Button) findViewById(R.id.logOut);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMainActivity();
+            }
+        });
     }
 
     public void openSearchBookActivity()
@@ -69,6 +93,24 @@ public class AdminHomeActivity extends AppCompatActivity {
     public void openIssueBookActivity()
     {
         Intent intent = new Intent(this, IssueBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openReturnBookActivity()
+    {
+        Intent intent = new Intent(this, ReturnBookActivity.class);
+        startActivity(intent);
+    }
+
+    public void openCollectFineActivity()
+    {
+        Intent intent = new Intent(this, CollectFineActivity.class);
+        startActivity(intent);
+    }
+
+    public void openMainActivity()
+    {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
