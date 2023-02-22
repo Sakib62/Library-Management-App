@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,14 +22,20 @@ public class SignInActivity extends AppCompatActivity {
 
     private EditText signInEmail, signInPassword;
     private FirebaseAuth mAuth;
+    private Button signIn;
+    private ProgressBar progressBar;
 
+    //Check if the user is already signed in
     @Override
     public void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
-            finish();
-            openUserHomeActivity();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user.isEmailVerified()) {
+                startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
+                finish();
+            }
         }
     }
 
@@ -37,11 +44,13 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button logIn = findViewById(R.id.logIn);
+        signIn = findViewById(R.id.signIn);
         signInEmail = findViewById(R.id.email);
         signInPassword = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
-        logIn.setOnClickListener(new View.OnClickListener() {
+        progressBar = findViewById(R.id.progressBar1);
+        progressBar.setVisibility(View.INVISIBLE);
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 userSignIn();
@@ -54,47 +63,64 @@ public class SignInActivity extends AppCompatActivity {
         String email = signInEmail.getText().toString().trim();
         String password = signInPassword.getText().toString().trim();
 
+        //Validation of email & password
         if(email.isEmpty()) {
-            signInEmail.setError("Enter an email address");
+            signInEmail.setError("Email is required!");
             signInEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            signInEmail.setError("Enter a valid email address");
+            signInEmail.setError("Please enter a valid email address!");
             signInEmail.requestFocus();
             return;
         }
 
         if(password.isEmpty()) {
-            signInPassword.setError("Enter a password");
+            signInPassword.setError("Password is required!");
             signInPassword.requestFocus();
             return;
         }
 
-        if(password.length() < 6) {
-            signInPassword.setError("Password length should be at least 6");
+        if(password.length() < 8) {
+            signInPassword.setError("Password length must be at least 8 characters!");
             signInPassword.requestFocus();
             return;
         }
 
+        if(password.length() > 15) {
+            signInPassword.setError("Password length must not exceed 15 characters!");
+            signInPassword.requestFocus();
+            return;
+        }
+
+        progressBar.setVisibility(View.VISIBLE);
+        //Signing In
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.INVISIBLE);
                 if(task.isSuccessful()) {
-                    finish();
-                    openUserHomeActivity();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()) {
+                        //redirect to user profile
+                        if(email.endsWith("@student.sust.edu")) {
+                            startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
+                        }
+                        else {
+                            startActivity(new Intent(SignInActivity.this, AdminHomeActivity.class));
+                        }
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(SignInActivity.this, "Verify your Email Address to sign in!\nCheck mail for Verification Link.", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "Login Failed. Try Again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignInActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
                 }
             }
         });
-    }
-
-    public void openUserHomeActivity()
-    {
-        Intent intent = new Intent(this, UserHomeActivity.class);
-        startActivity(intent);
     }
 }
