@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#04DFFB"
+    android:background="@drawable/login_bg"
     tools:context=".UserHomeActivity">
 
     <TextView
@@ -15,47 +15,53 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
-        android:background="#F5F8F8"
+        android:background="#F9FBFB"
         android:gravity="center"
-        android:text="USER HOME"
-        android:textSize="34sp"
+        android:text="User Home"
+        android:textSize="35sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="70dp" />
+        android:textColor="@color/none"/>
 
     <Button
         android:id="@+id/search"
         android:layout_width="224dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/userHome"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:gravity="center|center_horizontal"
         android:text="SEARCH BOOK"
-        android:textSize="24sp" />
+        android:textColor="@color/none3"
+        android:backgroundTint="@color/none2"
+        android:textSize="24sp"/>
 
     <Button
-        android:id="@+id/seeMyBooks"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
+        android:id="@+id/myBooks"
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/search"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="-9dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="SEE MY BOOKS"
+        android:text="My Books"
+        android:textColor="@color/none3"
+        android:backgroundTint="@color/none2"
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/logOut"
-        android:layout_width="226dp"
+        android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/seeMyBooks"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="-2dp"
+        android:layout_below="@id/myBooks"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:text="LOG OUT"
+        android:textColor="@color/teal_700"
+        android:backgroundTint="@color/lavender"
         android:textSize="24sp" />
 </RelativeLayout>

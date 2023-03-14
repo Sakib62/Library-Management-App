@@ -31,7 +31,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@color/white"
-        android:hint="ID"
+        android:hint="Book ID"
         android:padding="10dp"
         android:textSize="24sp" />
 
