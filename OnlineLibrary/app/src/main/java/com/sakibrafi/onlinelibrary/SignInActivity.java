@@ -41,9 +41,16 @@ public class SignInActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uMail = user.getEmail();
             if(user.isEmailVerified()) {
-                startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
-                finish();
+                if(uMail.endsWith("student.sust.edu")) {
+                    startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
+                    finish();
+                }
+                else {
+                    startActivity(new Intent(SignInActivity.this, AdminHomeActivity.class));
+                    finish();
+                }
             }
         }
     }

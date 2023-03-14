@@ -1,9 +1,11 @@
 package com.sakibrafi.onlinelibrary;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -25,7 +27,6 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText userName, signUpEmail, registrationNo, signUpPassword, confirmPassword;
     private FirebaseAuth mAuth;
     private Button signUp;
-    private ProgressBar progressBar;
 
     //Check if the user is already Signed In
     @Override
@@ -34,9 +35,16 @@ public class SignUpActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uMail = user.getEmail();
             if(user.isEmailVerified()) {
-                startActivity(new Intent(SignUpActivity.this, UserHomeActivity.class));
-                finish();
+                if(uMail.endsWith("student.sust.edu")) {
+                    startActivity(new Intent(SignUpActivity.this, UserHomeActivity.class));
+                    finish();
+                }
+                else {
+                    startActivity(new Intent(SignUpActivity.this, AdminHomeActivity.class));
+                    finish();
+                }
             }
         }
     }
@@ -46,14 +54,12 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        signUp = findViewById(R.id.signUp);
-        userName = findViewById(R.id.userName);
-        registrationNo = findViewById(R.id.registrationNo);
-        signUpEmail = findViewById(R.id.email);
-        signUpPassword = findViewById(R.id.password);
-        confirmPassword = findViewById(R.id.confirmPassword);
-        progressBar = findViewById(R.id.progressBar1);
-        progressBar.setVisibility(View.INVISIBLE);
+        signUp = findViewById(R.id.stSignUp);
+        userName = findViewById(R.id.stUserName);
+        registrationNo = findViewById(R.id.stRegistration);
+        signUpEmail = findViewById(R.id.stEmail);
+        signUpPassword = findViewById(R.id.stPassword);
+        confirmPassword = findViewById(R.id.stConfirmPassword);
         mAuth = FirebaseAuth.getInstance();
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +86,18 @@ public class SignUpActivity extends AppCompatActivity {
         confirmPassword.setError(null);
 
         //Validation part
+        if(regiNo.isEmpty()) {
+            registrationNo.setError("Registration No. is required!");
+            registrationNo.requestFocus();
+            return;
+        }
+
+        if(regiNo.length() != 10) {
+            registrationNo.setError("Registration No. should consist of 10 digits.");
+            registrationNo.requestFocus();
+            return;
+        }
+
         if(username.isEmpty()) {
             userName.setError("Username is required!");
             userName.requestFocus();
@@ -101,18 +119,6 @@ public class SignUpActivity extends AppCompatActivity {
         if(!email.endsWith("@student.sust.edu")) {
             signUpEmail.setError("Student mail must ends with \"@student.sust.edu\"");
             signUpEmail.requestFocus();
-            return;
-        }
-
-        if(regiNo.isEmpty()) {
-            registrationNo.setError("Registration No. is required!");
-            registrationNo.requestFocus();
-            return;
-        }
-
-        if(regiNo.length() != 10) {
-            registrationNo.setError("Registration No. should consist of 10 digits.");
-            registrationNo.requestFocus();
             return;
         }
 
@@ -146,13 +152,11 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
         //Creating New Account
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                progressBar.setVisibility(View.INVISIBLE);
                 if (task.isSuccessful()) {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -186,5 +190,31 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Exit app
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(SignUpActivity.this);
+        alertDialog.setTitle("Cancel");
+        alertDialog.setMessage("Do you want to cancel Sign Up?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                finish();
+            }
+        });
+
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+        // exit app
     }
 }
