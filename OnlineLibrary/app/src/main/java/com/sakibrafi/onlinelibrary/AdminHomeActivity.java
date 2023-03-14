@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminHomeActivity extends AppCompatActivity {
 
     @Override
@@ -67,49 +69,44 @@ public class AdminHomeActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 openMainActivity();
+                finish();
             }
         });
     }
 
-    public void openSearchBookActivity()
-    {
+    public void openSearchBookActivity() {
         Intent intent = new Intent(this, SearchBookActivity.class);
         startActivity(intent);
     }
 
-    public void openAddBookActivity()
-    {
+    public void openAddBookActivity() {
         Intent intent = new Intent(this, AddBookActivity.class);
         startActivity(intent);
     }
 
-    public void openRemoveBookActivity()
-    {
+    public void openRemoveBookActivity() {
         Intent intent = new Intent(this, RemoveBookActivity.class);
         startActivity(intent);
     }
 
-    public void openIssueBookActivity()
-    {
+    public void openIssueBookActivity() {
         Intent intent = new Intent(this, IssueBookActivity.class);
         startActivity(intent);
     }
 
-    public void openReturnBookActivity()
-    {
+    public void openReturnBookActivity() {
         Intent intent = new Intent(this, ReturnBookActivity.class);
         startActivity(intent);
     }
 
-    public void openCollectFineActivity()
-    {
+    public void openCollectFineActivity() {
         Intent intent = new Intent(this, CollectFineActivity.class);
         startActivity(intent);
     }
 
-    public void openMainActivity()
-    {
+    public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

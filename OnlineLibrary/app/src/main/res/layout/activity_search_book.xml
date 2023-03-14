@@ -33,7 +33,6 @@
         android:background="#FBFBFB"
         android:hint="Book Name"
         android:padding="15dp"
-        android:text="Book Name"
         android:textSize="20sp" />
 
     <EditText
