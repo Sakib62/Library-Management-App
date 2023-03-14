@@ -1,72 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:background="#0BDCF6"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/login_bg2"
+    android:alpha="0.9"
+    tools:context=".SignInActivity">
 
     <TextView
         android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
-        android:gravity="center"
-        android:text="Sign in"
-        android:textSize="35dp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="85dp" />
+        android:text="Sign In"
+        android:textAlignment="center"
+        android:textColor="@color/sunglow"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/head"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/white"
+        android:background="@drawable/login_back"
+        android:layout_marginTop="40dp"
+        android:padding="8dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="20dp"
-        android:textSize="20sp"
-        />
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:drawablePadding="8dp"
+        android:textColor="@color/black"/>
 
     <EditText
-        android:id="@+id/password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/email"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/white"
+        android:layout_height="50dp"
+        android:id="@+id/password"
+        android:background="@drawable/login_back"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:padding="20dp"
-        android:textSize="20sp"
-        />
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="8dp"
+        android:textColor="@color/black"/>
 
     <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Sign In"
         android:id="@+id/signIn"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/sunglow"
+        app:cornerRadius = "15dp"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/signupinlogin"
+        android:text="Not yet registered?"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:layout_marginTop="18dp"
+        android:textColor="@color/black"
+        android:textSize="23sp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
         android:gravity="center"
-        android:text="Sign In"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:background="@drawable/login_back"
+        android:backgroundTint="@color/sunglow"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/spinnerlogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -75,4 +91,4 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
-</RelativeLayout>
+</LinearLayout>
