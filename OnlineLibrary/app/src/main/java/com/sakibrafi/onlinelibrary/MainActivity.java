@@ -4,44 +4,47 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.os.Handler;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static int SPLASH_SCREEN = 4000;
+    Animation topAnim, bottomAnim;
+    ImageView image;
+    TextView title, slogan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //will go to sign up page
-        Button SignUp = (Button) findViewById(R.id.SignUp);
-        SignUp.setOnClickListener(new View.OnClickListener() {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
+
+        image = findViewById(R.id.image1);
+        title = findViewById(R.id.textView3);
+        slogan = findViewById(R.id.textView4);
+
+        image.setAnimation(topAnim);
+        title.setAnimation(bottomAnim);
+        slogan.setAnimation(bottomAnim);
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                openSignUpActivity();
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+                startActivity(intent);
+                finish();
             }
-        });
-
-        //Will go to sign in page
-        Button SignIn = (Button) findViewById(R.id.SignIn);
-        SignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openSignInActivity();
-            }
-        });
-    }
-
-    public void openSignUpActivity()
-    {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    public void openSignInActivity()
-    {
-        Intent intent = new Intent(this, SignInActivity.class);
-        startActivity(intent);
+        }, SPLASH_SCREEN);
     }
 }

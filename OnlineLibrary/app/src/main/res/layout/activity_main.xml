@@ -1,47 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0FDEF8"
+    android:background="#fece2f"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="395dp"
+        android:layout_height="381dp"
+        android:gravity="center"
+        android:src="@drawable/library" />
 
     <TextView
-        android:id="@+id/Title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:id="@+id/textView3"
+        android:layout_width="378dp"
+        android:layout_height="58dp"
+        android:fontFamily="cursive"
         android:gravity="center"
-        android:text="My Online Library"
-        android:textSize="35dp"
-        android:textStyle="bold" />
+        android:text="Online Library"
+        android:layout_marginBottom="15dp"
+        android:textSize="50sp" />
 
-    <Button
-        android:id="@+id/SignIn"
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Title"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="SIGN IN"
-        android:textSize="24sp" />
+        android:gravity="center"
+        android:text="E-learning and Education"
+        android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Title"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="SIGN UP"
-        android:textSize="24sp" />
-</RelativeLayout>
+</LinearLayout>
