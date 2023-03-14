@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Online Library</string>
+
+    <string-array name="signUpOption">
+        <item>Sign Up as Student</item>
+        <item>Sign Up as Admin</item>
+    </string-array>
 </resources>

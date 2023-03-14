@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +26,8 @@ public class SignInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signIn;
     private ProgressBar progressBar;
+    private Spinner spinner;
+    String[] signUpOptions;
 
     //Check if the user is already signed in
     @Override
@@ -43,6 +47,11 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        signUpOptions = getResources().getStringArray(R.array.signUpOption);
+
+        spinner = findViewById(R.id.spinnerlogin);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.sample_view, R.id.sampleViewTV, signUpOptions);
+        spinner.setAdapter(adapter);
 
         signIn = findViewById(R.id.signIn);
         signInEmail = findViewById(R.id.email);
