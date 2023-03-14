@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,13 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignUpActivity extends AppCompatActivity {
+public class AdminSignUpActivity extends AppCompatActivity {
 
-    private EditText userName, signUpEmail, registrationNo, signUpPassword, confirmPassword;
+    private EditText userName, signUpEmail, signUpPassword, confirmPassword;
     private FirebaseAuth mAuth;
     private Button signUp;
-
-    //Check if the user is already Signed In
     @Override
     public void onStart() {
         super.onStart();
@@ -38,66 +34,51 @@ public class SignUpActivity extends AppCompatActivity {
             String uMail = user.getEmail();
             if(user.isEmailVerified()) {
                 if(uMail.endsWith("student.sust.edu")) {
-                    startActivity(new Intent(SignUpActivity.this, UserHomeActivity.class));
+                    startActivity(new Intent(AdminSignUpActivity.this, UserHomeActivity.class));
                     finish();
                 }
                 else {
-                    startActivity(new Intent(SignUpActivity.this, AdminHomeActivity.class));
+                    startActivity(new Intent(AdminSignUpActivity.this, AdminHomeActivity.class));
                     finish();
                 }
             }
         }
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_admin_sign_up);
 
-        signUp = findViewById(R.id.stSignUp);
-        userName = findViewById(R.id.stUserName);
-        registrationNo = findViewById(R.id.stRegistration);
-        signUpEmail = findViewById(R.id.stEmail);
-        signUpPassword = findViewById(R.id.stPassword);
-        confirmPassword = findViewById(R.id.stConfirmPassword);
+        signUp = findViewById(R.id.adSignUp);
+        userName = findViewById(R.id.adUserName);
+        signUpEmail = findViewById(R.id.adEmail);
+        signUpPassword = findViewById(R.id.adPassword);
+        confirmPassword = findViewById(R.id.adConfirmPassword);
         mAuth = FirebaseAuth.getInstance();
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userRegister();
+                adminRegister();
             }
         });
+
     }
 
-    private void userRegister() {
+    private void adminRegister() {
 
-        String regiNo = registrationNo.getText().toString().trim();
         String username = userName.getText().toString().trim();
         String email = signUpEmail.getText().toString().trim();
         String password = signUpPassword.getText().toString().trim();
         String confirmPW = confirmPassword.getText().toString().trim();
 
         //Clears previous error
-        registrationNo.setError(null);
         userName.setError(null);
         signUpEmail.setError(null);
         signUpPassword.setError(null);
         confirmPassword.setError(null);
 
         //Validation part
-        if(regiNo.isEmpty()) {
-            registrationNo.setError("Registration No. is required!");
-            registrationNo.requestFocus();
-            return;
-        }
-
-        if(regiNo.length() != 10) {
-            registrationNo.setError("Registration No. should consist of 10 digits.");
-            registrationNo.requestFocus();
-            return;
-        }
-
         if(username.isEmpty()) {
             userName.setError("Username is required!");
             userName.requestFocus();
@@ -116,8 +97,8 @@ public class SignUpActivity extends AppCompatActivity {
             return;
         }
 
-        if(!email.endsWith("@student.sust.edu")) {
-            signUpEmail.setError("Student mail must ends with \"@student.sust.edu\"");
+        if(!email.endsWith("@gmail.com")) {
+            signUpEmail.setError("Student mail must ends with \"@gmail.com\"");
             signUpEmail.requestFocus();
             return;
         }
@@ -163,12 +144,12 @@ public class SignUpActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()) {
-                                Toast.makeText(SignUpActivity.this, "An email has been sent to your given address. Please click the link in the mail to continue.", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+                                Toast.makeText(AdminSignUpActivity.this, "An email has been sent to your given address. Please click the link in the mail to continue.", Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(AdminSignUpActivity.this, SignInActivity.class));
                                 finish();
                             }
                             else {
-                                Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminSignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -177,15 +158,15 @@ public class SignUpActivity extends AppCompatActivity {
                     if(task.getException() instanceof FirebaseAuthUserCollisionException) {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if(user.isEmailVerified()) {
-                            Toast.makeText(SignUpActivity.this, "User email Exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminSignUpActivity.this, "User email Exists", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(SignUpActivity.this, "Verification mail has already been sent. Click on the link in the mail to continue.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminSignUpActivity.this, "Verification mail has already been sent. Click on the link in the mail to continue.", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AdminSignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -195,7 +176,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         // Exit app
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(SignUpActivity.this);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(AdminSignUpActivity.this);
         alertDialog.setTitle("Cancel");
         alertDialog.setMessage("Do you want to cancel Sign Up?");
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

@@ -1,17 +1,22 @@
 package com.sakibrafi.onlinelibrary;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,9 +41,16 @@ public class SignInActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uMail = user.getEmail();
             if(user.isEmailVerified()) {
-                startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
-                finish();
+                if(uMail.endsWith("student.sust.edu")) {
+                    startActivity(new Intent(SignInActivity.this, UserHomeActivity.class));
+                    finish();
+                }
+                else {
+                    startActivity(new Intent(SignInActivity.this, AdminHomeActivity.class));
+                    finish();
+                }
             }
         }
     }
@@ -48,6 +60,9 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         signUpOptions = getResources().getStringArray(R.array.signUpOption);
+        signUpOptions[0] = "  " + signUpOptions[0] + "  ";
+        signUpOptions[1] = " " + signUpOptions[1];
+        signUpOptions[2] = " " + signUpOptions[2] + "  ";
 
         spinner = findViewById(R.id.spinnerlogin);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.sample_view, R.id.sampleViewTV, signUpOptions);
@@ -63,6 +78,24 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userSignIn();
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String curItem = spinner.getSelectedItem().toString();
+                if(curItem == signUpOptions[1]) {
+                    startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                }
+                else if(curItem == signUpOptions[2]) {
+                    startActivity(new Intent(SignInActivity.this, AdminSignUpActivity.class));
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -131,5 +164,30 @@ public class SignInActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Exit app
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(SignInActivity.this);
+        alertDialog.setTitle("Exit App");
+        alertDialog.setMessage("Do you want to exit app?");
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
+
+        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+        // exit app
     }
 }

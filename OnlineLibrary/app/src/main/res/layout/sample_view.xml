@@ -10,6 +10,9 @@
         android:id="@+id/sampleViewTV"
         android:padding="5dp"
         android:textSize="20sp"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:background="@color/sunglow"
         android:textStyle="bold"/>

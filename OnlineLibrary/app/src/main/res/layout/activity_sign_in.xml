@@ -15,10 +15,12 @@
         android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/aclonica"
         android:text="Sign In"
+        android:gravity="center"
         android:textAlignment="center"
         android:textColor="@color/sunglow"
-        android:textSize="36sp"
+        android:textSize="46sp"
         android:textStyle="bold" />
 
     <EditText
@@ -29,6 +31,7 @@
         android:layout_marginTop="40dp"
         android:padding="8dp"
         android:hint="Email"
+        android:textColorHint="@color/black"
         android:drawableLeft="@drawable/baseline_email_24"
         android:drawablePadding="8dp"
         android:textColor="@color/black"/>
@@ -41,6 +44,7 @@
         android:layout_marginTop="20dp"
         android:padding="8dp"
         android:hint="Password"
+        android:textColorHint="@color/black"
         android:inputType="textPassword"
         android:drawableLeft="@drawable/baseline_lock_24"
         android:drawablePadding="8dp"
@@ -53,6 +57,7 @@
         android:id="@+id/signIn"
         android:textSize="18sp"
         android:layout_marginTop="15dp"
+        android:textColor="@color/black"
         android:backgroundTint="@color/sunglow"
         app:cornerRadius = "15dp"/>
 
@@ -78,6 +83,7 @@
         <Spinner
             android:id="@+id/spinnerlogin"
             android:layout_width="wrap_content"
+            android:textAlignment="center"
             android:layout_height="wrap_content">
         </Spinner>
 
