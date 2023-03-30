@@ -36,7 +36,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/authorName"
+        android:id="@+id/bookId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bookName"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="#FBFBFB"
-        android:hint="Author Name"
+        android:hint="Book ID"
         android:padding="15dp"
         android:textSize="20sp" />
 
@@ -53,7 +53,7 @@
         android:id="@+id/go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/authorName"
+        android:layout_below="@id/bookId"
         android:layout_marginStart="150dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
