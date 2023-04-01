@@ -11,38 +11,29 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserHomeActivity extends AppCompatActivity {
 
+    Button logOut, search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_home);
 
-        Button logOut = findViewById(R.id.logOut);
+        logOut = findViewById(R.id.logOut);
+        search = findViewById(R.id.search);
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                openMainInActivity();
+                startActivity(new Intent(UserHomeActivity.this, SignInActivity.class));
                 finish();
             }
         });
 
-        Button search = findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openSearchBookActivity();
+                startActivity(new Intent(UserHomeActivity.this, SearchBookActivity.class));
             }
         });
     }
-
-    public void openMainInActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void openSearchBookActivity() {
-        Intent intent = new Intent(this, SearchBookActivity.class);
-        startActivity(intent);
-    }
-
 }
