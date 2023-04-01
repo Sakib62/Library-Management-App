@@ -1,16 +1,29 @@
-# Online Library
-Library Management App to manage a Book Library.
+<h1 align = "center">Online Library</h1>
 
-- Users: Students and Library Admins, can do various operations such as:
-  - adding & removing books
-  - searching books
-  - issuing, returning books
-  - see due dates & fines etc.
+<p align = "center"><b>Library Management App to manage SUST Central Library</b></p>
 
-- Firebase could be used as database.
+## **Users:** 
+- Current Students of SUST
+- Librarians
 
-- Framework such as flutter may be used.
+## **Features for Students:**
+  - Search Books
+  - Borrow Books
+  - Return Books
+  - Track Dues
+  
+ ## **Features for Librarians:**
+  - Add Books
+  - Remove Books
+  - Search Books
+  - Issue Books
+  - Collect Dues
+  
+ ## **Tools used to build the app:**
+  - Android Studio
+  - Java & Xml
+  - Firebase for authentication & storage-retrieval of data
 
-## Team GigaBrain
-1. [Sakibul Islam](https://github.com/Sakib62)
-2. [Abdullah Al Safayt Hossan Rafi](https://github.com/Safayet-Rafi)
+## **Developer: Team GigaBrain**
+- [Sakibul Islam](https://github.com/Sakib62)
+- [Abdullah Al Safayt Hossan Rafi](https://github.com/Safayet-Rafi)
