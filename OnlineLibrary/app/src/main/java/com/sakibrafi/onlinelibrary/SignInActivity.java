@@ -73,6 +73,7 @@ public class SignInActivity extends AppCompatActivity {
         signInPassword = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar1);
+
         progressBar.setVisibility(View.INVISIBLE);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,9 +88,11 @@ public class SignInActivity extends AppCompatActivity {
                 String curItem = spinner.getSelectedItem().toString();
                 if(curItem == signUpOptions[1]) {
                     startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                    spinner.setSelection(0);
                 }
                 else if(curItem == signUpOptions[2]) {
                     startActivity(new Intent(SignInActivity.this, AdminSignUpActivity.class));
+                    spinner.setSelection(0);
                 }
             }
 
@@ -156,7 +159,7 @@ public class SignInActivity extends AppCompatActivity {
                         finish();
                     }
                     else {
-                        Toast.makeText(SignInActivity.this, "Verify your Email Address to sign in!\nCheck mail for Verification Link.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignInActivity.this, "Verify your Email Address to sign in!\nCheck email for Verification Link.", Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
